@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+  --color-surface: #141414;
+  --color-surface-hover: #1a1a1a;
+  --color-border: #262626;
+  --color-border-light: #333333;
+  --color-accent: #7c3aed;
+  --color-accent-light: #8b5cf6;
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #eab308;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(124, 58, 237, 0.4); }
+  50% { box-shadow: 0 0 20px 6px rgba(124, 58, 237, 0.7); }
+}
+
+@keyframes pulse-glow-success {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(34, 197, 94, 0.4); }
+  50% { box-shadow: 0 0 16px 4px rgba(34, 197, 94, 0.6); }
+}
+
+@keyframes pulse-glow-error {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 16px 4px rgba(239, 68, 68, 0.6); }
+}
+
+.node-running {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+.node-success {
+  animation: pulse-glow-success 2s ease-in-out 1;
+}
+
+.node-error {
+  animation: pulse-glow-error 2s ease-in-out 1;
+}
+
+.react-flow__minimap {
+  background-color: #141414 !important;
+  border: 1px solid #262626 !important;
+  border-radius: 8px !important;
+}
+
+.react-flow__controls {
+  border: 1px solid #262626 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.react-flow__controls button {
+  background-color: #141414 !important;
+  border-color: #262626 !important;
+  color: #ededed !important;
+}
+
+.react-flow__controls button:hover {
+  background-color: #1a1a1a !important;
+}
+
+.react-flow__edge-path {
+  stroke: #7c3aed !important;
+  stroke-width: 2;
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke-dasharray: 5;
+  animation: dashdraw 0.5s linear infinite;
+}
+
+@keyframes dashdraw {
+  from { stroke-dashoffset: 10; }
+  to { stroke-dashoffset: 0; }
+}
+
+@layer base {
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 3px;
+  }
 }
